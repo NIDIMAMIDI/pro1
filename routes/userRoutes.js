@@ -1,5 +1,5 @@
 import express from "express"
-import {getAllUsers, getUser, updateUser, deleteUser, updateMe, deleteMe, getMe} from "./../controllers/userController.js";
+import {getAllUsers, getUser, updateUser, deleteUser, updateMe, deleteMe, getMe, uploadPhoto, uploadUserPhoto} from "./../controllers/userController.js";
 import { signup, login, forgotPassword, resetPassword, updatePassword, protect, resrictTo} from "./../controllers/authController.js";
 const router = express.Router()
 
@@ -20,7 +20,7 @@ router.use(protect)
 
 
 router.patch("/updatePassword", updatePassword)
-router.patch("/updateMe", updateMe)
+router.patch("/updateMe", uploadPhoto, uploadUserPhoto, updateMe)
 router.patch("/deleteMe", deleteMe)
 router.get('/me', getMe, getUser)
 

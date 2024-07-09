@@ -1,7 +1,7 @@
 // routes/tourRoutes.js
 
 import express from "express";
-import {getAllTours, createTour, getTourById, updateTour, deleteTour, aliasTopTour, getTourStats, getMonthlyPlan, getToursWithin, getDistance} from "./../controllers/tourController.js"; // Named imports
+import {getAllTours, createTour, getTourById, updateTour, deleteTour, aliasTopTour, getTourStats, getMonthlyPlan, getToursWithin, getDistance, uploadTourImages,resizeTourImages} from "./../controllers/tourController.js"; // Named imports
 import { protect , resrictTo} from "./../controllers/authController.js";
 // import { createReview } from "../controllers/reviewController.js";
 // import authController from "./../controllers/authController.js"
@@ -38,7 +38,7 @@ router.route("/")
 
 router.route("/:id")
     .get(getTourById)
-    .patch(protect, resrictTo('admin', 'lead-guide'),updateTour)
+    .patch(protect, resrictTo('admin', 'lead-guide'),uploadTourImages,resizeTourImages,updateTour)
     .delete(protect, resrictTo('admin', 'lead-guide'),deleteTour);
 
 
